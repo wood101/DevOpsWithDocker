@@ -1,0 +1,3 @@
+docker run -d -it -p 80 devopsdockeruh/ports_exercise
+
+docker port 54

@@ -1,0 +1,17 @@
+docker run -it devopsdockeruh/exec_bash_exercise
+
+docker container ls
+CONTAINER ID        IMAGE                               COMMAND                  CREATED             STATUS              PORTS               NAMES
+07f4a2bc8c74        devopsdockeruh/exec_bash_exercise   "docker-entrypoint.s…"   14 seconds ago      Up 12 
+seconds                           distracted_borg
+
+docker exec -it 07 bash
+
+root@07f4a2bc8c74:/usr/app# tail -f ./logs.txt
+Mon, 07 Dec 2020 18:09:49 GMT
+Mon, 07 Dec 2020 18:09:52 GMT
+Mon, 07 Dec 2020 18:09:55 GMT
+Mon, 07 Dec 2020 18:09:58 GMT
+Secret message is:
+"Docker is easy"
+

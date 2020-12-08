@@ -1,0 +1,6 @@
+docker build -t nodeback .
+docker run -v $(pwd)/logs.txt:/logs.txt -p 8000:8000 -d nodeback
+
+docker build -t nodefront .
+docker run -it -d -p 5000:5000 nodefront
+
