@@ -1,0 +1,16 @@
+version: '3.7'
+services: 
+
+ frontend:
+    build: './frontend-example-docker'
+    image: nodefront
+    ports:
+      - "5000:5000"
+    depends_on:
+      - backend
+
+ backend:
+    build: './backend-example-docker'
+    image: nodeback
+    ports:
+      - "8000:8000"

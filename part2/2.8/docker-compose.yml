@@ -1,0 +1,50 @@
+version: '3.7'
+services: 
+
+ frontend:
+    build: './frontend-example-docker'
+    image: nodefront
+    ports:
+      - "5000:5000"
+    depends_on:
+      - backend
+
+ backend:
+    build: './backend-example-docker'
+    image: nodeback
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+    environment:
+      - REDIS_PORT=6379
+      - REDIS=redis
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=example
+      - DB_HOST=db
+
+ redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"    
+    command: ["redis-server", "--appendonly", "yes"]
+    hostname: redis
+
+ db:
+    image: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: example
+      POSTGRES_USER: postgres
+      POSTGRES_DB: database
+    container_name: db
+
+ nginx: 
+    image: nginx:latest 
+    volumes: 
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports: 
+      - 80:80
+    depends_on:
+      - frontend
+      - backend 
